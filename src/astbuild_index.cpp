@@ -77,17 +77,17 @@ int main(int argc, char **argv) {
 			return -1;
 		case 'b':
 			if (isdigit(optarg[0])) {
-				param.filter_band = atoi(optarg);
+				param.filband = atoi(optarg);
 			}
-			else if (optarg[0] == 'B') param.filter_band = 1;
-			else if (optarg[0] == 'V') param.filter_band = 2;
-			else if (optarg[0] == 'g') param.filter_band = 3;
-			else if (optarg[0] == 'r') param.filter_band = 4;
-			else if (optarg[0] == 'i') param.filter_band = 5;
-			else if (optarg[0] == 'J') param.filter_band = 6;
-			else if (optarg[0] == 'H') param.filter_band = 7;
-			else if (optarg[0] == 'K') param.filter_band = 8;
-			else param.filter_band = 0;
+			else if (optarg[0] == 'B') param.filband = 1;
+			else if (optarg[0] == 'V') param.filband = 2;
+			else if (optarg[0] == 'g') param.filband = 3;
+			else if (optarg[0] == 'r') param.filband = 4;
+			else if (optarg[0] == 'i') param.filband = 5;
+			else if (optarg[0] == 'J') param.filband = 6;
+			else if (optarg[0] == 'H') param.filband = 7;
+			else if (optarg[0] == 'K') param.filband = 8;
+			else param.filband = 0;
 			break;
 		case 'd': param.dimquads = atoi(optarg);
 			break;
@@ -132,9 +132,9 @@ int main(int argc, char **argv) {
 		}
 	}
 
-	if (param.filter_band < 1 || param.filter_band > 8) {
+	if (param.filband < 1 || param.filband > 8) {
 		printf ("wrong filter band %i exceeds ranged from %i to %i\n",
-				param.filter_band, 1, 8);
+				param.filband, 1, 8);
 		return -2;
 	}
 	if (!idxfn) {

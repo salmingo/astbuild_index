@@ -6,7 +6,7 @@
 
 void init_index_param(index_param& param) {
 	memset(&param, 0, sizeof(index_param));
-	param.filter_band = 1;
+	param.filband = 1;
 	param.jitter    = 1.0;
 	param.sweeps	= 10;
 	param.passes	= 16;
@@ -18,5 +18,5 @@ void init_index_param(index_param& param) {
 }
 
 void build_index_files(const char* pathcat, const char* fpout, index_param& param) {
-	// 打开星表
+	// 构建临时星表
 }

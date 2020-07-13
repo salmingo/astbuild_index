@@ -9,7 +9,8 @@
  * @struct index_param 生成索引文件的控制参数
  */
 typedef struct {
-	int filter_band;	/// 滤光片波段. 1-5: BVgri; 6-8: JHK
+	char pathcat[100];	/// 临时FITS星表路径
+	int filband;		/// 滤光片波段. 1-5: BVgri; 6-8: JHK
 	double jitter;	// 位置误差阈值; 量纲: arcsec
 
 	// 均匀化
