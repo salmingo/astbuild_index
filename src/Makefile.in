@@ -101,7 +101,7 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_astbuild_index_OBJECTS = ucac4_to_fits.$(OBJEXT) kdtree.$(OBJEXT) \
+am_astbuild_index_OBJECTS = ucac4api.$(OBJEXT) kdtree.$(OBJEXT) \
 	codetree.$(OBJEXT) index.$(OBJEXT) build_index.$(OBJEXT) \
 	astbuild_index.$(OBJEXT)
 astbuild_index_OBJECTS = $(am_astbuild_index_OBJECTS)
@@ -124,7 +124,7 @@ am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/astbuild_index.Po \
 	./$(DEPDIR)/build_index.Po ./$(DEPDIR)/codetree.Po \
 	./$(DEPDIR)/index.Po ./$(DEPDIR)/kdtree.Po \
-	./$(DEPDIR)/ucac4_to_fits.Po
+	./$(DEPDIR)/ucac4api.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -270,7 +270,7 @@ target_vendor = @target_vendor@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-astbuild_index_SOURCES = ucac4_to_fits.cpp kdtree.cpp codetree.cpp index.cpp build_index.cpp astbuild_index.cpp
+astbuild_index_SOURCES = ucac4api.cpp kdtree.cpp codetree.cpp index.cpp build_index.cpp astbuild_index.cpp
 @DEBUG_FALSE@AM_CFLAGS = -O3 -Wall
 @DEBUG_TRUE@AM_CFLAGS = -g3 -O0 -Wall -DNDEBUG
 @DEBUG_FALSE@AM_CXXFLAGS = -O3 -Wall
@@ -367,7 +367,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/codetree.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/index.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kdtree.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ucac4_to_fits.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ucac4api.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -521,7 +521,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/codetree.Po
 	-rm -f ./$(DEPDIR)/index.Po
 	-rm -f ./$(DEPDIR)/kdtree.Po
-	-rm -f ./$(DEPDIR)/ucac4_to_fits.Po
+	-rm -f ./$(DEPDIR)/ucac4api.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -572,7 +572,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/codetree.Po
 	-rm -f ./$(DEPDIR)/index.Po
 	-rm -f ./$(DEPDIR)/kdtree.Po
-	-rm -f ./$(DEPDIR)/ucac4_to_fits.Po
+	-rm -f ./$(DEPDIR)/ucac4api.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

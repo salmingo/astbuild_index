@@ -1,5 +1,5 @@
 bin_PROGRAMS=astbuild_index
-astbuild_index_SOURCES=ucac4_to_fits.cpp kdtree.cpp codetree.cpp index.cpp build_index.cpp astbuild_index.cpp
+astbuild_index_SOURCES=ucac4api.cpp kdtree.cpp codetree.cpp index.cpp build_index.cpp astbuild_index.cpp
 
 if DEBUG
   AM_CFLAGS = -g3 -O0 -Wall -DNDEBUG

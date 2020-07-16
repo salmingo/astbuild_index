@@ -11,6 +11,7 @@
 #include <string.h>
 #include "build_index.h"
 #include "keywords.h"
+#include "ucac4api.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 /*!
@@ -40,7 +41,7 @@ void print_help(const char* progname) {
 			"    -u <max-quad-size>   maximum quad size (arcminutes)\n"
 			"    )\n"
 			"    [-b <band>]          filter band for magnitude. using alphabet or digit number.\n"
-			"                       1-5 correspond to BVgri and 6-8 with JHK. default: V\n"
+			"                       0-4 correspond to BVgri and 5-7 with JHK. default: V\n"
 			"    [-B <val>]           the brightest mag value\n"
 			"    [-U <Nside>]         healpix Nside for uniformization; default: same as -N\n"
 			"    [-H <big healpix>]   default: all-sky\n"
@@ -77,17 +78,17 @@ int main(int argc, char **argv) {
 			return -1;
 		case 'b':
 			if (isdigit(optarg[0])) {
-				param.filband = atoi(optarg);
+				param.filter_band = atoi(optarg);
 			}
-			else if (optarg[0] == 'B') param.filband = 1;
-			else if (optarg[0] == 'V') param.filband = 2;
-			else if (optarg[0] == 'g') param.filband = 3;
-			else if (optarg[0] == 'r') param.filband = 4;
-			else if (optarg[0] == 'i') param.filband = 5;
-			else if (optarg[0] == 'J') param.filband = 6;
-			else if (optarg[0] == 'H') param.filband = 7;
-			else if (optarg[0] == 'K') param.filband = 8;
-			else param.filband = 0;
+			else if (optarg[0] == 'B') param.filter_band = 0;
+			else if (optarg[0] == 'V') param.filter_band = 1;
+			else if (optarg[0] == 'g') param.filter_band = 2;
+			else if (optarg[0] == 'r') param.filter_band = 3;
+			else if (optarg[0] == 'i') param.filter_band = 4;
+			else if (optarg[0] == 'J') param.filter_band = 5;
+			else if (optarg[0] == 'H') param.filter_band = 6;
+			else if (optarg[0] == 'K') param.filter_band = 7;
+			else param.filter_band = 0;
 			break;
 		case 'd': param.dimquads = atoi(optarg);
 			break;
@@ -132,13 +133,13 @@ int main(int argc, char **argv) {
 		}
 	}
 
-	if (param.filband < 1 || param.filband > 8) {
+	if (param.filter_band < 0 || param.filter_band > 7) {
 		printf ("wrong filter band %i exceeds ranged from %i to %i\n",
-				param.filband, 1, 8);
+				param.filter_band, 0, 7);
 		return -2;
 	}
 	if (!idxfn) {
-		printf ("requires to specify outpu filename\n");
+		printf ("requires to specify output filename\n");
 		print_help(argv[0]);
 		return -3;
 	}
@@ -194,7 +195,8 @@ int main(int argc, char **argv) {
 	param.argc = argc;
 	param.argv = argv;
 
-	build_index_files("/Users/lxm/Catalogue/UCAC4", idxfn, param);
+	build_ucac4_fits("/Users/lxm/Catalogue/UCAC4", param);
+//	build_index_files("/Users/lxm/Catalogue/UCAC4", idxfn, param);
 
 	return 0;
 }

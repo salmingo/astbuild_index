@@ -2,11 +2,12 @@
  * @file ucac4_to_fits.h 由UCAC4星表生成以二进制表格式存储的FITS文件
  */
 
-#ifndef SRC_UCAC4_TO_FITS_H_
-#define SRC_UCAC4_TO_FITS_H_
+#ifndef SRC_UCAC4API_H_
+#define SRC_UCAC4API_H_
 
 #include <string.h>
 #include "build_index.h"
+#include "cat_index.h"
 
 #define MILLISEC		3600000		//< 1度=3600000毫角秒
 #define MILLISEC360		1296000000	// 360度对应的毫角秒
@@ -72,5 +73,10 @@ static const char* ucac4_band[] = {// UCAC4星表波段名称定义
  * @brief 由UCAC4星表构建临时FITS文件
  */
 void build_ucac4_fits(const char* pathcat, index_param& param);
+/*!
+ * @brief 解析星表条目
+ * @param band 滤光片波段索引
+ */
+void ucac4_resolve_item(char *buff, int band, CatStar& star);
 
-#endif /* SRC_UCAC4_TO_FITS_H_ */
+#endif /* SRC_UCAC4API_H_ */
