@@ -1,7 +1,9 @@
 /**
  * @file build_index.cpp 定义相关接口函数
  */
+
 #include <string.h>
+#include <stdio.h>
 #include "build_index.h"
 
 void init_index_param(index_param& param) {
@@ -17,6 +19,74 @@ void init_index_param(index_param& param) {
 	param.bighp		= -1;
 }
 
-void build_index_files(const char* pathcat, const char* fpout, index_param& param) {
-	// 构建临时星表
+int build_index(index_param& p, index_t** p_index, const char* indexfn) {
+	return 0;
+}
+
+void build_index_files(index_param& param) {
+	index_t* index;
+
+	build_index(param, &index, NULL);
+}
+
+int merge_index(quadfile_t* quad, codetree_t* code, startree_t* star,
+                const char* indexfn) {
+    FILE* fout;
+    fitstable_t* tag = NULL;
+
+    fout = fopen(indexfn, "wb");
+    if (!fout) {
+        printf("Failed to open output file");
+        return -1;
+    }
+
+    if (quadfile_write_header_to(quad, fout)) {
+        printf("Failed to write quadfile header to index file %s", indexfn);
+        return -1;
+    }
+    if (quadfile_write_all_quads_to(quad, fout)) {
+        printf("Failed to write quads to index file %s", indexfn);
+        return -1;
+    }
+    if (fits_pad_file(fout)) {
+        printf("Failed to pad index file %s", indexfn);
+        return -1;
+    }
+
+    if (codetree_append_to(code, fout)) {
+        printf("Failed to write code kdtree to index file %s", indexfn);
+        return -1;
+    }
+    if (fits_pad_file(fout)) {
+        printf("Failed to pad index file %s", indexfn);
+        return -1;
+    }
+
+    if (startree_append_to(star, fout)) {
+        printf("Failed to write star kdtree to index file %s", indexfn);
+        return -1;
+    }
+    if (fits_pad_file(fout)) {
+        printf("Failed to pad index file %s", indexfn);
+        return -1;
+    }
+
+    if (startree_has_tagalong(star))
+        tag = startree_get_tagalong(star);
+    if (tag) {
+        if (fitstable_append_to(tag, fout)) {
+            printf("Failed to write star kdtree tag-along data to index file %s", indexfn);
+            return -1;
+        }
+        if (fits_pad_file(fout)) {
+            printf("Failed to pad index file %s", indexfn);
+            return -1;
+        }
+    }
+
+    if (fclose(fout)) {
+        printf("Failed to close index file %s", indexfn);
+        return -1;
+    }
+    return 0;
 }

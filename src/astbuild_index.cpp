@@ -100,7 +100,7 @@ int main(int argc, char **argv) {
 			break;
 		case 'n': param.sweeps = atoi(optarg);
 			break;
-		case 'o': idxfn = optarg;
+		case 'o': strcpy(param.output, idxfn);
 			break;
 		case 'p': param.passes = atoi(optarg);
 			break;
@@ -195,8 +195,8 @@ int main(int argc, char **argv) {
 	param.argc = argc;
 	param.argv = argv;
 
-	build_ucac4_fits("/Users/lxm/Catalogue/UCAC4", param);
-//	build_index_files("/Users/lxm/Catalogue/UCAC4", idxfn, param);
+	strcpy (param.pathcat, "/Users/lxm/Catalogue/UCAC4/astindex-0.fit");
+	build_index_files(param);
 
 	return 0;
 }

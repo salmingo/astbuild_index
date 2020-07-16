@@ -5,8 +5,10 @@
 #ifndef SRC_CAT_INDEX_H_
 #define SRC_CAT_INDEX_H_
 
+#include <stdint.h>
+
 typedef struct {
-	int ra, spd;	//< 赤经; 南天极距离. 量纲: 毫角秒
+	uint32_t ra, spd;	//< 赤经; 南天极距离. 量纲: 毫角秒
 	short mag;		//< 星等. 量纲: 毫星等
 } CatStar;
 

@@ -6,6 +6,7 @@
 #define SRC_QUADFILE_H_
 
 #include <stdint.h>
+#include <stdio.h>
 
 typedef struct {
 	unsigned int	numquads;
@@ -20,5 +21,6 @@ typedef struct {
 	uint32_t*		quad_array;
 } quadfile_t;
 
+int  quadfile_write_header_to(quadfile_t* qf, FILE* fid);
 
 #endif /* SRC_QUADFILE_H_ */

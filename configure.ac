@@ -51,13 +51,17 @@ esac],
 [debug=false])
 
 AM_CONDITIONAL(DEBUG, test x"$debug" = x"true")
+
+AC_CHECK_HEADER_STDBOOL
+AC_CHECK_HEADERS([stddef.h])
+AC_CHECK_FUNCS([memset pow sqrt memmove])
+AC_CHECK_TYPES([ptrdiff_t])
+AC_FUNC_MALLOC
+AC_TYPE_SIZE_T
 AC_TYPE_INT32_T
 AC_TYPE_UINT8_T
 AC_TYPE_UINT16_T
 AC_TYPE_UINT32_T
-AC_CHECK_HEADER_STDBOOL
-# AC_CHECK_HEADERS()
-AC_CHECK_FUNCS([memset pow sqrt ])
 
 AC_CONFIG_FILES(Makefile src/Makefile)
 AC_OUTPUT
