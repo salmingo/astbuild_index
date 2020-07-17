@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "build_index.h"
+#include "bl.h"
 
 void init_index_param(index_param& param) {
 	memset(&param, 0, sizeof(index_param));
@@ -20,6 +21,41 @@ void init_index_param(index_param& param) {
 }
 
 int build_index(index_param& p, index_t** p_index, const char* indexfn) {
+//	fitstable_t* uniform;
+
+	// star kdtree
+	startree_t* starkd = NULL;
+//	fitstable_t* startag = NULL;
+
+	// hpquads
+//	codefile_t* codes = NULL;
+	quadfile_t* quads = NULL;
+
+	// codetree
+	codetree_t* codekd = NULL;
+
+	// unpermute-stars
+	startree_t* starkd2 = NULL;
+	quadfile_t* quads2 = NULL;
+//	fitstable_t* startag2 = NULL;
+
+	// unpermute-quads
+	quadfile_t* quads3 = NULL;
+	codetree_t* codekd2 = NULL;
+
+	bl* tempfiles;
+    char* unifn=NULL;
+    char* skdtfn=NULL;
+    char* quadfn=NULL;
+    char* codefn=NULL;
+    char* ckdtfn=NULL;
+    char* skdt2fn=NULL;
+    char* quad2fn=NULL;
+    char* quad3fn=NULL;
+    char* ckdt2fn=NULL;
+
+    if (!p.UNside) p.UNside = p.Nside;
+
 	return 0;
 }
 
